@@ -1,78 +1,57 @@
 [
   {
-    "name": "Brian Kernighan",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01",
-    "skills": ["AWK", "AMPL", "Unix"]
-  },
-  {
-    "name": "Max Kanat-Alexander",
-    "email": "mkanatalexander@techfriends.dev",
+    "name": "Selena Saxton",
+    "email": "SS@aol.com",
     "password": "password02",
-    "skills": ["Java", "Perl", "Apache", "Python"]
+    "child1_name": "Bobby Saxton",
+    "child2_name":"",
+    "child3_name":"",
+    "teacher_name": "Giana Lawless",
+    "class_grade": "1st grade",
+    "comments": ["Wow, Ms. Lawless is great"]
   },
   {
-    "name": "Amiko",
-    "email": "amiko@techfriends.dev",
-    "password": "password03",
-    "skills": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"]
+    "name": "Yousef Pressley",
+    "email": "You@yahoo.com",
+    "password": "password02",
+    "child1_name": "Elvis Pressley",
+    "child2_name":"",
+    "child3_name":"",
+    "teacher_name": "Giana Lawless",
+    "class_grade": "1st grade",
+    "comments": ["Do we need a No2 pencil?"]
   },
   {
-    "name": "Kent Beck",
-    "email": "kbeck@techfriends.dev",
-    "password": "password04",
-    "skills": [
-      "Test-Driven Development",
-      "Extreme Programming",
-      "Software Design Patterns",
-      "JUnit"
-    ]
+    "name": "Heidy Seals",
+    "email": "heidyho@email.com",
+    "password": "password02",
+    "child1_name": "Debbie Seals",
+    "child2_name":"",
+    "child3_name":"",
+    "teacher_name": "Giana Lawless",
+    "class_grade": "1st grade",
+    "comments": []
   },
   {
-    "name": "Edward V. Berard",
-    "email": "evberard@techfriends.dev",
-    "password": "password05",
-    "skills": ["Object-Oriented Design"]
+    "name": "Saul Nelson",
+    "email": "nelson@nunyo.com",
+    "password": "password02",
+    "child1_name": "Ricky Nelson",
+    "child2_name":"",
+    "child3_name":"",
+    "teacher_name": "Giana Lawless",
+    "class_grade": "1st grade",
+    "comments": ["Love the geography lesson"]
   },
   {
-    "name": "Alan Kay",
-    "email": "akay@techfriends.dev",
-    "password": "password06",
-    "skills": [
-      "Graphical User Interface (GUI) Design",
-      "Jazz Guitar",
-      "Education"
-    ]
-  },
-  {
-    "name": "C.A.R. Hoare",
-    "email": "choare@techfriends.dev",
-    "password": "password07",
-    "skills": ["Algorithms", "Quicksort", "Hoare Logic"]
-  },
-  {
-    "name": "David Thomas",
-    "email": "dthomas@techfriends.dev",
-    "password": "password08",
-    "skills": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"]
-  },
-  {
-    "name": "Donald Knuth",
-    "email": "dknuth@techfriends.dev",
-    "password": "password09",
-    "skills": ["TeX Computer Typesetting", "Algorithms", "Author"]
-  },
-  {
-    "name": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10",
-    "skills": [
-      "JavaScript",
-      "CSS",
-      "HTML",
-      "Design Systems",
-      "Typescript",
-      "PWAs"
-    ]
+    "name": "Madelyn Eads",
+    "email": "meads@gmail.com",
+    "password": "password02",
+    "child1_name": "Jillian Eads",
+    "child2_name":"",
+    "child3_name":"",
+    "teacher_name": "Giana Lawless",
+    "class_grade": "1st grade",
+    "comments": ["My daughter got an A!!"]
   }
 ]
