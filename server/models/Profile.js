@@ -19,7 +19,24 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
+  child1_name: {
+    type: String,
+    required: true,
+  },
+  child2_name: {
+    type: String,
+  },
+  child3_name: {
+    type: String,
+  },
+  teacher_name: {
+    type: String,
+    required: true,
+  },
+  class_grade: {
+    type: String,
+  },
+  comments: [
     {
       type: String,
       trim: true,
