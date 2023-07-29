@@ -34,7 +34,8 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
   ## ScreenShot
-
+  Put actual screenshot here.
+  
   ## Wireframe
 
-  ![Alt text](image.png)
+  ![Project wireframe](image.png)
