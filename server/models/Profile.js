@@ -19,15 +19,11 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  child1_name: {
-    type: String,
-    required: true,
-  },
-  child2_name: {
-    type: String,
-  },
-  child3_name: {
-    type: String,
+  children: {
+    type: [{
+      type: String
+    }],
+    validate: [hasChild, 'Need at least one child']
   },
   teacher_name: {
     type: String,
@@ -43,6 +39,10 @@ const profileSchema = new Schema({
     },
   ],
 });
+
+function hasChild (arr) {
+  return arr.length > 0;
+}
 
 // set up pre-save middleware to create password
 profileSchema.pre('save', async function (next) {
