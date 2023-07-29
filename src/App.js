@@ -25,28 +25,28 @@ function App() {
   );
 }
 
-function App() {
-  return (
-    <div>
-      <Flex bg="blue.500" p="4" justifyContent="space-between">
-        <Box>
-          <Link color="white" href="/">
-            Home
-          </Link>
-        </Box>
-        <Box>
-          <Link color="white" href="/about">
-            About
-          </Link>
-        </Box>
-        <Box>
-          <Link color="white" href="/contact">
-            Contact
-          </Link>
-        </Box>
-      </Flex>
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div>
+//       <Flex bg="blue.500" p="4" justifyContent="space-between">
+//         <Box>
+//           <Link color="white" href="/Home">
+//             Home
+//           </Link>
+//         </Box>
+//         <Box>
+//           <Link color="white" href="/About">
+//             About
+//           </Link>
+//         </Box>
+//         <Box>
+//           <Link color="white" href="/Contact">
+//             Contact
+//           </Link>
+//         </Box>
+//       </Flex>
+//     </div>
+//   );
+// }
 // sign in and sign up functions
 export default App;
