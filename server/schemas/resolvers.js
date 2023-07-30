@@ -22,13 +22,9 @@ function formatProfileData (data) {
 const resolvers = {
   Query: {
     profiles: async () => {
-<<<<<<< HEAD
-      return Profile.find().populate("comments");
-=======
       const profiles = await Profile.find().lean(); 
       // .lean() converts the results into default JS object type rather than mongo type
       return formatProfileData(profiles);
->>>>>>> main
     },
 
     profile: async (parent, { profileId }) => {
@@ -54,26 +50,12 @@ const resolvers = {
   },
 
   Mutation: {
-<<<<<<< HEAD
-    addProfile: async (
-      parent,
-      { name, email, password, children, teacher_name }
-    ) => {
-      const profile = await Profile.create({
-        name,
-        email,
-        password,
-        children,
-        teacher_name,
-      });
-=======
     addProfile: async (parent, { name, email, password, children, teacher_name, is_teacher }) => {
       const teacher = {
         teacher_name: teacher_name,
         is_teacher: is_teacher,
       }
       const profile = await Profile.create({ name, email, password, children, teacher });
->>>>>>> main
       const token = signToken(profile);
 
       return { token, profile };
