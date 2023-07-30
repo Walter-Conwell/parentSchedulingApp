@@ -2,14 +2,39 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 
+// Removes teacher_name and is_teacher from embedded object
+// This allows graphQL to return those due to lack of object type
+function formatProfileData (data) {
+  if (data[1]) { // Detects if data is an array
+    for(let i = 0; i < data.length; i++){
+      data[i].teacher_name = data[i].teacher.teacher_name;
+      data[i].is_teacher = data[i].teacher.is_teacher;
+      delete data[i].teacher;
+    }
+  } else {
+    data.teacher_name = data.teacher.teacher_name;
+    data.is_teacher = data.teacher.is_teacher;
+    delete data.teacher;
+  }
+  return data;
+}
+
 const resolvers = {
   Query: {
     profiles: async () => {
+<<<<<<< HEAD
       return Profile.find().populate("comments");
+=======
+      const profiles = await Profile.find().lean(); 
+      // .lean() converts the results into default JS object type rather than mongo type
+      return formatProfileData(profiles);
+>>>>>>> main
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      const profile = await Profile.findOne({ _id: profileId }).lean();
+      // .lean() converts the results into default JS object type rather than mongo type
+      return formatProfileData(profile);
     },
 
     comments: async (parent, { username }) => {
@@ -29,6 +54,7 @@ const resolvers = {
   },
 
   Mutation: {
+<<<<<<< HEAD
     addProfile: async (
       parent,
       { name, email, password, children, teacher_name }
@@ -40,6 +66,14 @@ const resolvers = {
         children,
         teacher_name,
       });
+=======
+    addProfile: async (parent, { name, email, password, children, teacher_name, is_teacher }) => {
+      const teacher = {
+        teacher_name: teacher_name,
+        is_teacher: is_teacher,
+      }
+      const profile = await Profile.create({ name, email, password, children, teacher });
+>>>>>>> main
       const token = signToken(profile);
 
       return { token, profile };
