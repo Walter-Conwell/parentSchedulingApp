@@ -23,11 +23,20 @@ const profileSchema = new Schema({
     type: [{
       type: String
     }],
-    validate: [hasChild, 'Need at least one child']
+    validate: [hasChild, 'Need at least one child'],
   },
-  teacher_name: {
-    type: String,
-    required: true,
+  teacher: {
+    type: {
+      is_teacher: {
+        type: Boolean,
+        default: false,
+      },
+      teacher_name: {
+        type: String,
+        default: '',
+      },
+    },
+    validate: [teacherCheck, 'Need to be a teacher OR have a teacher name'],
   },
   class_grade: {
     type: String,
@@ -39,6 +48,16 @@ const profileSchema = new Schema({
     },
   ],
 });
+
+function teacherCheck (teacher) {
+  if (!teacher.is_teacher && teacher.teacher_name === '') {
+    return false; // Needs to have at least one field
+  }
+  if(teacher.is_teacher && teacher.teacher_name !== ''){
+    return false; // Cannot have both fields
+  }
+  return true;
+}
 
 function hasChild (arr) {
   return arr.length > 0;
