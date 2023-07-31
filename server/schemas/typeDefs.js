@@ -34,10 +34,9 @@ const typeDefs = gql`
   type Mutation {
     addProfile(name: String!, email: String!, password: String!, children: [String]!, teacher_name: String!): Auth
     login(email: String!, password: String!): Auth
-
-    addComment(profileId: ID!, comment: String!): Profile
-    removeProfile: Profile
-    removeComment(comment: String!): Profile
+    addComment(commentId: ID!, commentText: String!): Comment
+    removeProfile(profileId: ID!): Profile
+    removeComment(commentId: ID!): Comment
   }
 `;
 
