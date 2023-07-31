@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import About from "./About";
 import Contact from "./Contact";
+import Drawer from "./Drawer";
 
 const Main = ({ currentPage }) => {
   console.log(currentPage);
