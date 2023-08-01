@@ -1,7 +1,8 @@
 // import logo from "./logo.svg";
 // notes - not a mismatch
 // next- use this that works, and incorporate
-
+import React, { useState } from "react";
+import "../../src/App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import {
@@ -22,22 +23,22 @@ function SignUp() {
   return (
     <div className="App">
       <ChakraProvider>
-        <Button onClick={onOpen}>Open Modal</Button>
+        <Button onClick={onOpen}>SignUp</Button>
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader>Welcome!</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <h1>Hello Modal</h1>
+              <h1>Sign up with us to start Connecting with Resources!</h1>
             </ModalBody>
 
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
+                Save
               </Button>
-              <Button variant="ghost">Secondary Action</Button>
+              <Button variant="ghost">Close</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

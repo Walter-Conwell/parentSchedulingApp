@@ -1,11 +1,21 @@
 import React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 import SignUp from "./Signup";
+import Login from "./Signup";
+
 
 function Main() {
   return (
     <div>
-      <h1>this is my main </h1>
-      <SignUp />
+      <Box as="section" bg="darkgreen">
+        sample
+        <SignUp />
+      </Box>
+      <Box as="section" bg="darkgreen">
+        sample
+        <Login />
+      </Box>
     </div>
   );
 }

@@ -49,14 +49,22 @@
 
 // export default Navbar;
 // // follow example and tweak it.
-import { Image, Flex, Button, HStack, chakra, Link } from "@chakra-ui/react";
+import {
+  Image,
+  Flex,
+  Box,
+  Button,
+  HStack,
+  chakra,
+  Link,
+} from "@chakra-ui/react";
 
 const CTA = "Get Started";
 
 export default function Navbar() {
   return (
     <chakra.header id="header">
-      <Flex w="100%" px="6" py="5" align="center" justify="space-between">
+      <Flex w="100%" px="6" py="5" align="right" justify="space-between">
         {/* <Image src={Logo.src} h="50px" /> */}
 
         <HStack as="nav" spacing="5">
