@@ -13,23 +13,23 @@ const permissions = [
 const resolvers = {
   Query: {
     profiles: async () => {
-      const profiles = await Profile.find().lean();
+      const profiles = await Profile.find().lean(); // .lean() returns a native JS object rather than Mongo object
       return formatProfileData(profiles);
     },
 
     profile: async (parent, { profileId, profileName }) => {
       let profile;
       if (profileId){
-        profile = await Profile.findOne({ _id: profileId }).lean();
+        profile = await Profile.findOne({ _id: profileId }).lean(); // .lean() returns a native JS object rather than Mongo object
       } else {
-        profile = await Profile.findOne({ name: profileName }).lean();
+        profile = await Profile.findOne({ name: profileName }).lean(); // .lean() returns a native JS object rather than Mongo object
       }
       return formatProfileData(profile);
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        const profile = Profile.findOne({ _id: context.user._id }).lean();
+        const profile = Profile.findOne({ _id: context.user._id }).lean(); // .lean() returns a native JS object rather than Mongo object
         return formatProfileData(profile);
       }
       throw new AuthenticationError('You need to be logged in!');
