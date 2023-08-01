@@ -1,6 +1,41 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const childSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  teachers: {
+    type: [{
+      type: String,
+      validate: [function (teacher) {
+        if (Profile.findOne({ name: teacher })) {
+          return true;
+        } 
+        return false;
+      }, 'Not a valid teacher name'],
+    }]
+  },
+  parents: {
+    type: [{
+      type: String,
+      validate: [function (parent) {
+        if (Profile.findOne({ name: parent })){
+          return true;
+        }
+        return false;
+      }, 'Not a valid parent name'],
+    }]
+  },
+  grade_level: {
+    type: Number,
+    required: true,
+    validate: [(num) => { return num > 0; }, 'Grade level must be above 0'],
+  }
+});
+
 const profileSchema = new Schema({
   name: {
     type: String,
@@ -23,42 +58,22 @@ const profileSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  teacher_name: {
-    type: String,
-    validate: [teacherCheck, 'Need a teacher name or be a teacher'],
-  },
   children: {
-    type: [{
-      type: String
-    }],
-    validate: [childCheck, 'Need at least one child or be a teacher'],
-  },
-  class_grade: {
-    type: String,
+    type: [childSchema],
+    // validate: [(arr) => { return this.is_teacher || arr.length > 0; }, 'Must be a teacher or have children'],
   },
   permission_level: {
     type: Number,
     default: 0,
-    validate: [function (level) { return level >= 0; }, 'Level must be 0 or above'],
+    validate: [(level) => { return level >= 0; }, 'Level must be 0 or above'],
   },
-  comments: [
-    {
+  comments: {
+    type: [{
       type: String,
       trim: true,
-    },
-  ],
-});
-
-function teacherCheck (teacherName) {
-  if ( teacherName === null) {
-    return this.is_teacher;
+    }],
   }
-  return true;
-}
-
-function childCheck (arr) {
-  return this.is_teacher || arr.length > 0;
-}
+});
 
 // set up pre-save middleware to create password
 profileSchema.pre('save', async function (next) {

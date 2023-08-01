@@ -7,9 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     children: [String]!,
-    teacher_name: String,
     is_teacher: Boolean,
-    class_grade: String,
     comments: [String]
   }
 
@@ -26,9 +24,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addProfile(name: String!, email: String!, password: String!, children: [String], teacher_name: String, is_teacher: Boolean): Auth
+    addProfile(name: String!, email: String!, password: String!, is_teacher: Boolean): Auth
     login(email: String!, password: String!): Auth
-
+    
+    addChild(profileId: ID, profileName: String, childName: String!, teacherNames: [String]!, parents: [String]!, gradeLevel: Int!): Profile
     addComment(profileId: ID!, comment: String!): Profile
     removeProfile(profileId: ID): Profile
     removeComment(profileId: ID, comment: String!): Profile
