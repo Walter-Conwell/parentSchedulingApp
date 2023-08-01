@@ -2,8 +2,7 @@ import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 import SignUp from "./Signup";
-import Login from "./Signup";
-
+import Login from "./Login";
 
 function Main() {
   return (

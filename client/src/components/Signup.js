@@ -49,8 +49,8 @@ function SignUp() {
 
 export default SignUp;
 
-// import React, { useState } from "react";
-// import "./App.css";
+
+
 // import { ChakraProvider } from "@chakra-ui/react";
 // import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 // import { SettingsIcon } from "@chakra-ui/icons";
