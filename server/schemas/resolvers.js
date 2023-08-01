@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 const { formatProfileData } = require('../utils/formatData');
 
@@ -32,7 +32,10 @@ const resolvers = {
         const profile = Profile.findOne({ _id: context.user._id }).lean(); // .lean() returns a native JS object rather than Mongo object
         return formatProfileData(profile);
       }
-      throw new AuthenticationError('You need to be logged in!');
+      if (context.profile) {
+        return Profile.findOne({ _id: context.profile._id }).populate('comments');
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 
@@ -78,13 +81,13 @@ const resolvers = {
       const profile = await Profile.findOne({ email });
 
       if (!profile) {
-        throw new AuthenticationError('No profile with this email found!');
+        throw new AuthenticationError("No profile with this email found!");
       }
 
       const correctPw = await profile.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
+        throw new AuthenticationError("Incorrect credentials!");
       }
 
       const token = signToken(profile);
@@ -94,11 +97,11 @@ const resolvers = {
     // Add a third argument to the resolver to access data in our `context`
     addComment: async (parent, { profileId, comment }, context) => {
       // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
+      if (context.profile) {
         return Profile.findOneAndUpdate(
           { _id: profileId },
           {
-            $addToSet: { comments: comment },
+            $addToSet: { comments: commentText, commentAuthor: context.profile.profileId },
           },
           {
             new: true,
@@ -107,7 +110,7 @@ const resolvers = {
         );
       }
       // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, { profileId }, context) => {
@@ -119,7 +122,7 @@ const resolvers = {
       } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     // Make it so a logged in user can only remove a comment from their own profile
     removeComment: async (parent, { profileId, comment }, context) => {
@@ -139,7 +142,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

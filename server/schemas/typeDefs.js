@@ -8,9 +8,16 @@ const typeDefs = gql`
     password: String
     children: [String]!,
     is_teacher: Boolean,
+
     comments: [String]
   }
 
+  type Comment {
+    _id: ID
+    commentText: String
+    commentAuthor: String
+    createdAt: String
+  }
   type Auth {
     token: ID!
     profile: Profile
@@ -19,11 +26,13 @@ const typeDefs = gql`
   type Query {
     profiles: [Profile]!
     profile(profileId: ID, profileName: String): Profile
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
+    comments(profileId: String): [Comment]
+    comment(commentId: ID!): Comment
     me: Profile
   }
 
   type Mutation {
+
     addProfile(name: String!, email: String!, password: String!, is_teacher: Boolean): Auth
     login(email: String!, password: String!): Auth
     
@@ -31,6 +40,7 @@ const typeDefs = gql`
     addComment(profileId: ID!, comment: String!): Profile
     removeProfile(profileId: ID): Profile
     removeComment(profileId: ID, comment: String!): Profile
+
   }
 `;
 
