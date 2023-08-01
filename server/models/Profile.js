@@ -41,6 +41,11 @@ const profileSchema = new Schema({
   class_grade: {
     type: String,
   },
+  permission_level: {
+    type: Number,
+    default: 0,
+    validate: [function (level) { return level >= 0; }, 'Level must be 0 or above'],
+  },
   comments: [
     {
       type: String,
