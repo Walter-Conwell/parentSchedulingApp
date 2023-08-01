@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
+const { formatProfileData } = require('../utils/formatData');
 
 const permissions = [
   "",
@@ -12,18 +13,22 @@ const permissions = [
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      const profiles = await Profile.find().lean();
+      return formatProfileData(profiles);
     },
 
     profile: async (parent, { profileId, profileName }) => {
+      let profile;
       if (profileId){
-        return Profile.findOne({ _id: profileId });
+        profile = await Profile.findOne({ _id: profileId }).lean();
       } else {
-        return Profile.findOne({ name: profileName });
+        profile = await Profile.findOne({ name: profileName }).lean();
       }
+      return formatProfileData(profile);
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
+
       if (context.profile) {
         return Profile.findOne({ _id: context.profile._id }).populate('comments');
       }
@@ -32,11 +37,42 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password, children, teacher_name, is_teacher }) => {
-      const profile = await Profile.create({ name, email, password, children, teacher_name, is_teacher });
+    addProfile: async (parent, { name, email, password, is_teacher }) => {
+      const profile = await Profile.create({ name, email, password, is_teacher });
       const token = signToken(profile);
 
       return { token, profile };
+    },
+    addChild: async (parent, { profileId, profileName, childName, teacherNames, parents, gradeLevel }, context) => {
+      const childToCreate = {
+        name: childName,
+        teachers: teacherNames, 
+        parents: parents,
+        grade_level: gradeLevel,
+      }
+      if ( ( profileId || profileName ) && permissions[ context.user.permission_level ].split(' ').includes('changeChildren')) {
+        if ( profileId ) {
+          return Profile.findOneAndUpdate(
+            { _id: profileId },
+            { $addToSet: { children: childToCreate }},
+            { new: true }
+          );
+        }
+        return Profile.findOneAndUpdate(
+          { name: profileName },
+          { $addToSet: { children: childToCreate }},
+          { new: true }
+        );
+      }
+      if ( context.user ) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { children: childToCreate }},
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
