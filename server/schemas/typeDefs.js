@@ -26,7 +26,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addProfile(name: String!, email: String!, password: String!, children: [String]!, teacher_name: String, is_teacher: Boolean): Auth
+    addProfile(name: String!, email: String!, password: String!, children: [String], teacher_name: String, is_teacher: Boolean): Auth
     login(email: String!, password: String!): Auth
 
     addComment(profileId: ID!, comment: String!): Profile
