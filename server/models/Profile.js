@@ -1,5 +1,60 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 const bcrypt = require('bcrypt');
+
+const commentSchema = new Schema({
+  commentText: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  commentAuthor: {
+    type: ObjectId,
+    required: true,
+    trim: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+});
+
+const childSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  teachers: {
+    type: [{
+      type: String,
+      validate: [function (teacher) {
+        if (Profile.findOne({ name: teacher })) {
+          return true;
+        } 
+        return false;
+      }, 'Not a valid teacher name'],
+    }]
+  },
+  parents: {
+    type: [{
+      type: String,
+      validate: [function (parent) {
+        if (Profile.findOne({ name: parent })){
+          return true;
+        }
+        return false;
+      }, 'Not a valid parent name'],
+    }]
+  },
+  grade_level: {
+    type: Number,
+    required: true,
+    validate: [(num) => { return num > 0; }, 'Grade level must be above 0'],
+  }
+});
 
 const profileSchema = new Schema({
   name: {
@@ -19,49 +74,23 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  is_teacher: {
+    type: Boolean,
+    default: false,
+  },
   children: {
-    type: [{
-      type: String
-    }],
-    validate: [hasChild, 'Need at least one child'],
+    type: [childSchema],
+    // validate: [(arr) => { return this.is_teacher || arr.length > 0; }, 'Must be a teacher or have children'],
   },
-  teacher: {
-    type: {
-      is_teacher: {
-        type: Boolean,
-        default: false,
-      },
-      teacher_name: {
-        type: String,
-        default: '',
-      },
-    },
-    validate: [teacherCheck, 'Need to be a teacher OR have a teacher name'],
+  permission_level: {
+    type: Number,
+    default: 0,
+    validate: [(level) => { return level >= 0; }, 'Level must be 0 or above'],
   },
-  class_grade: {
-    type: String,
-  },
-  comments: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
+  comments: {
+    type: [commentSchema],
+  }
 });
-
-function teacherCheck (teacher) {
-  if (!teacher.is_teacher && teacher.teacher_name === '') {
-    return false; // Needs to have at least one field
-  }
-  if(teacher.is_teacher && teacher.teacher_name !== ''){
-    return false; // Cannot have both fields
-  }
-  return true;
-}
-
-function hasChild (arr) {
-  return arr.length > 0;
-}
 
 // set up pre-save middleware to create password
 profileSchema.pre('save', async function (next) {

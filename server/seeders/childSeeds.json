@@ -1,0 +1,38 @@
+[
+    {
+        "name": "John Saxton",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Selena Saxton"],
+        "grade_level": 2
+    },
+    {
+        "name": "Jessica Saxton",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Selena Saxton"],
+        "grade_level": 2
+    },
+    {
+        "name": "Elvis Pressley",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Yousef Pressley"],
+        "grade_level": 2
+    },
+    {
+        "name": "Rob Seals",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Heidy Seals"],
+        "grade_level": 2
+    },
+    {
+        "name": "Alex Eads",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Madelyn Eads"],
+        "grade_level": 2
+    },
+    {
+        "name": "Jimmy Nelson",
+        "teachers": ["Giana Lawless"],
+        "parents": ["Saul Nelson"],
+        "grade_level": 2
+    }
+]

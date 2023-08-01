@@ -3,60 +3,37 @@
     "name": "Selena Saxton",
     "email": "SS@aol.com",
     "password": "password02",
-    "children": ["Bobby Saxton"],
-    "teacher": {
-      "is_teacher": false,
-      "teacher_name": "Giana Lawless"
-    },
-    "class_grade": "1st grade",
-    "comments": ["Wow, Ms. Lawless is great"]
+    "is_teacher": false
   },
   {
     "name": "Yousef Pressley",
     "email": "You@yahoo.com",
     "password": "password02",
-    "children": ["Elvis Pressley"],
-    "teacher": {
-      "is_teacher": false,
-      "teacher_name": "Giana Lawless"
-    },
-    "class_grade": "1st grade",
-    "comments": ["Do we need a No2 pencil?"]
+    "is_teacher": false
   },
   {
     "name": "Heidy Seals",
     "email": "heidyho@email.com",
     "password": "password02",
-    "children": ["Debbie Seals"],
-    "teacher": {
-      "is_teacher": false,
-      "teacher_name": "Giana Lawless"
-    },
-    "class_grade": "1st grade",
-    "comments": []
+    "is_teacher": false
   },
   {
     "name": "Saul Nelson",
     "email": "nelson@nunyo.com",
     "password": "password02",
-    "children": ["Ricky Nelson"],
-    "teacher": {
-      "is_teacher": false,
-      "teacher_name": "Giana Lawless"
-    },
-    "class_grade": "1st grade",
-    "comments": ["Love the geography lesson"]
+    "is_teacher": false
   },
   {
     "name": "Madelyn Eads",
     "email": "meads@gmail.com",
     "password": "password02",
-    "children": ["Jillian Eads"],
-    "teacher": {
-      "is_teacher": false,
-      "teacher_name": "Giana Lawless"
-    },
-    "class_grade": "1st grade",
-    "comments": ["My daughter got an A!!"]
+    "is_teacher": false
+  },
+  {
+    "name": "Giana Lawless",
+    "email": "gianalawless@gmail.com",
+    "password": "password02",
+    "is_teacher": true,
+    "permission_level": 3
   }
 ]
