@@ -32,9 +32,6 @@ const resolvers = {
         const profile = Profile.findOne({ _id: context.user._id }).lean(); // .lean() returns a native JS object rather than Mongo object
         return formatProfileData(profile);
       }
-      if (context.profile) {
-        return Profile.findOne({ _id: context.profile._id }).populate('comments');
-      }
       throw new AuthenticationError("You need to be logged in!");
     },
   },

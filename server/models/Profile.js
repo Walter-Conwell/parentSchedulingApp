@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { commentSchema } = require('./Comment');
 const bcrypt = require('bcrypt');
 
 const childSchema = new Schema({
@@ -68,10 +69,7 @@ const profileSchema = new Schema({
     validate: [(level) => { return level >= 0; }, 'Level must be 0 or above'],
   },
   comments: {
-    type: [{
-      type: String,
-      trim: true,
-    }],
+    type: [commentSchema],
   }
 });
 
