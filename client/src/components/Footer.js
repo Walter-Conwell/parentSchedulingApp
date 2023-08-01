@@ -1,4 +1,6 @@
 import React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+
 import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 
 const Footer = () => {

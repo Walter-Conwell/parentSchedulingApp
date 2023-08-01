@@ -1,23 +1,19 @@
-import React, { useState } from "react";
-import About from "./About";
-import Contact from "./Contact";
-import Drawer from "./Drawer";
+import React from "react";
+import SignUp from "./Signup";
 
-const Main = ({ currentPage }) => {
-  console.log(currentPage);
-  const renderPage = () => {
-    if (currentPage === "Home") {
-      return <About />;
-    }
-    if (currentPage === "About") {
-      return <About />;
-    }
-    if (currentPage === "Contact") {
-      return <Contact />;
-    }
-    return <Contact />;
-  };
-  return <div className="main">{renderPage()}</div>;
-};
+function Main() {
+  return (
+    <div>
+      <h1>this is my main </h1>
+      <SignUp />
+    </div>
+  );
+}
 
 export default Main;
+// external css (or styled objects)
+// style it myself!!
+// navbar diff color (cream color)
+// app- dark background
+// chakura ui - styled system/theme rgba numbers
+// wrap with form control - inputs
