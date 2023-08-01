@@ -2,43 +2,25 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 
-// Removes teacher_name and is_teacher from embedded object
-// This allows graphQL to return those due to lack of object type
-function formatProfileData (data) {
-  if (data[1]) { // Detects if data is an array
-    for(let i = 0; i < data.length; i++){
-      data[i].teacher_name = data[i].teacher.teacher_name;
-      data[i].is_teacher = data[i].teacher.is_teacher;
-      delete data[i].teacher;
-    }
-  } else {
-    data.teacher_name = data.teacher.teacher_name;
-    data.is_teacher = data.teacher.is_teacher;
-    delete data.teacher;
-  }
-  return data;
-}
+const permissions = [
+  "",
+  "deleteComments",
+  "deleteComments changeTeacher changeGrade",
+  "deleteComments changeTeacher changeGrade changeChildren editProfiles deleteProfiles",
+]
 
 const resolvers = {
   Query: {
     profiles: async () => {
-      const profiles = await Profile.find().lean(); 
-      // .lean() converts the results into default JS object type rather than mongo type
-      return formatProfileData(profiles);
+      return Profile.find();
     },
 
-    profile: async (parent, { profileId }) => {
-      const profile = await Profile.findOne({ _id: profileId }).lean();
-      // .lean() converts the results into default JS object type rather than mongo type
-      return formatProfileData(profile);
-    },
-
-    comments: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Comment.find(params).sort({ createdAt: -1 });
-    },
-    comment: async (parent, { commentId }) => {
-      return Comment.findOne({ _id: commentId });
+    profile: async (parent, { profileId, profileName }) => {
+      if (profileId){
+        return Profile.findOne({ _id: profileId });
+      } else {
+        return Profile.findOne({ name: profileName });
+      }
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
@@ -51,11 +33,7 @@ const resolvers = {
 
   Mutation: {
     addProfile: async (parent, { name, email, password, children, teacher_name, is_teacher }) => {
-      const teacher = {
-        teacher_name: teacher_name,
-        is_teacher: is_teacher,
-      }
-      const profile = await Profile.create({ name, email, password, children, teacher });
+      const profile = await Profile.create({ name, email, password, children, teacher_name, is_teacher });
       const token = signToken(profile);
 
       return { token, profile };
@@ -96,19 +74,32 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeProfile: async (parent, args, context) => {
-      if (context.user) {
+    removeProfile: async (parent, { profileId }, context) => {
+      if( context.user && profileId ) {
+        // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete others
+        if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteProfiles') )) {
+          return Profile.findOneAndDelete({ _id: profileId });
+        }
+      } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     // Make it so a logged in user can only remove a comment from their own profile
-    removeComment: async (parent, { comment }, context) => {
-      if (context.profile) {
-        
+    removeComment: async (parent, { profileId, comment }, context) => {
+      if ( context.user && profileId ) {
+        // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete other comments
+        if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteComments') )) {
+          return Profile.findOneAndUpdate(
+            { _id: profileId },
+            { $pull: { comments: comment }},
+            { new: true }
+          );
+        }
+      } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { comments: comment } },
+          { $pull: { comments: comment }},
           { new: true }
         );
       }

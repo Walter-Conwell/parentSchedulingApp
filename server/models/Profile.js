@@ -19,27 +19,27 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  is_teacher: {
+    type: Boolean,
+    default: false,
+  },
+  teacher_name: {
+    type: String,
+    validate: [teacherCheck, 'Need a teacher name or be a teacher'],
+  },
   children: {
     type: [{
       type: String
     }],
-    validate: [hasChild, 'Need at least one child'],
-  },
-  teacher: {
-    type: {
-      is_teacher: {
-        type: Boolean,
-        default: false,
-      },
-      teacher_name: {
-        type: String,
-        default: '',
-      },
-    },
-    validate: [teacherCheck, 'Need to be a teacher OR have a teacher name'],
+    validate: [childCheck, 'Need at least one child or be a teacher'],
   },
   class_grade: {
     type: String,
+  },
+  permission_level: {
+    type: Number,
+    default: 0,
+    validate: [function (level) { return level >= 0; }, 'Level must be 0 or above'],
   },
   comments: [
     {
@@ -49,18 +49,15 @@ const profileSchema = new Schema({
   ],
 });
 
-function teacherCheck (teacher) {
-  if (!teacher.is_teacher && teacher.teacher_name === '') {
-    return false; // Needs to have at least one field
-  }
-  if(teacher.is_teacher && teacher.teacher_name !== ''){
-    return false; // Cannot have both fields
+function teacherCheck (teacherName) {
+  if ( teacherName === null) {
+    return this.is_teacher;
   }
   return true;
 }
 
-function hasChild (arr) {
-  return arr.length > 0;
+function childCheck (arr) {
+  return this.is_teacher || arr.length > 0;
 }
 
 // set up pre-save middleware to create password

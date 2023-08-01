@@ -25,7 +25,7 @@ const typeDefs = gql`
 
   type Query {
     profiles: [Profile]!
-    profile(profileId: ID!): Profile
+    profile(profileId: ID, profileName: String): Profile
     comments(profileId: String): [Comment]
     comment(commentId: ID!): Comment
     me: Profile
@@ -33,10 +33,11 @@ const typeDefs = gql`
 
   type Mutation {
     addProfile(name: String!, email: String!, password: String!, children: [String]!, teacher_name: String!): Auth
+    addProfile(name: String!, email: String!, password: String!, children: [String], teacher_name: String, is_teacher: Boolean): Auth
     login(email: String!, password: String!): Auth
     addComment(commentId: ID!, commentText: String!): Comment
-    removeProfile(profileId: ID!): Profile
-    removeComment(commentId: ID!): Comment
+    removeProfile(profileId: ID)(profileId: ID!): Profile
+    removeComment(profileId: ID, commentId: ID!): Comment
   }
 `;
 
