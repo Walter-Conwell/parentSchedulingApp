@@ -21,7 +21,7 @@
   border: 1px solid black;
   min-height: 100vh;
   /*vh is responsive by nature  */
-  background-color: black;
+  /* background-color: black; */
 }
 
 .App-header {
