@@ -1,5 +1,25 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 const bcrypt = require('bcrypt');
+
+const commentSchema = new Schema({
+  commentText: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  commentAuthor: {
+    type: ObjectId,
+    required: true,
+    trim: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+});
 
 const childSchema = new Schema({
   name: {
@@ -68,10 +88,7 @@ const profileSchema = new Schema({
     validate: [(level) => { return level >= 0; }, 'Level must be 0 or above'],
   },
   comments: {
-    type: [{
-      type: String,
-      trim: true,
-    }],
+    type: [commentSchema],
   }
 });
 

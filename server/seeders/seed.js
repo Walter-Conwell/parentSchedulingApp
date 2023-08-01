@@ -2,6 +2,7 @@ const db = require('../config/connection');
 const { Profile } = require('../models');
 const profileSeeds = require('./profileSeeds.json');
 const childSeeds = require('./childSeeds.json');
+const commentSeeds = require('./commentSeeds.json');
 
 db.once('open', async () => {
   try {
@@ -15,6 +16,16 @@ db.once('open', async () => {
           { $addToSet: { children: childSeeds[i] }}
         );
       }
+    }
+
+    for ( let i = 0; i < commentSeeds.length; i++ ) {
+      await Profile.findOneAndUpdate(
+        { name: commentSeeds[i].commentAuthor },
+        { $addToSet: { comments: {
+          commentAuthor: this._id,
+          commentText: commentSeeds[i].commentText,
+        }}}
+      );
     }
 
     console.log('all done!');

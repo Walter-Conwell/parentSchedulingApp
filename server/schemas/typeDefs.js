@@ -8,7 +8,6 @@ const typeDefs = gql`
     password: String
     children: [String]!,
     is_teacher: Boolean,
-
     comments: [String]
   }
 
