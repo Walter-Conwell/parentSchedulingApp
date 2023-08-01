@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
-const { formatProfileData } = require('../utils/formatData');
+const { formatChildData, formatCommentData } = require('../utils/formatData');
 
 const permissions = [
   "",
@@ -13,24 +13,24 @@ const permissions = [
 const resolvers = {
   Query: {
     profiles: async () => {
-      const profiles = await Profile.find().lean();
-      return formatProfileData(profiles);
+      const profiles = await Profile.find().lean(); // .lean() returns a native JS object rather than Mongo object
+      return formatChildData(profiles);
     },
 
     profile: async (parent, { profileId, profileName }) => {
       let profile;
       if (profileId){
-        profile = await Profile.findOne({ _id: profileId }).lean();
+        profile = await Profile.findOne({ _id: profileId }).lean(); // .lean() returns a native JS object rather than Mongo object
       } else {
-        profile = await Profile.findOne({ name: profileName }).lean();
+        profile = await Profile.findOne({ name: profileName }).lean(); // .lean() returns a native JS object rather than Mongo object
       }
-      return formatProfileData(profile);
+      return formatChildData(profile);
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
-
-      if (context.profile) {
-        return Profile.findOne({ _id: context.profile._id }).populate('comments');
+      if (context.user) {
+        const profile = Profile.findOne({ _id: context.user._id }).lean(); // .lean() returns a native JS object rather than Mongo object
+        return formatChildData(profile);
       }
       throw new AuthenticationError("You need to be logged in!");
     },

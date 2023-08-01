@@ -3,43 +3,37 @@
     "name": "Selena Saxton",
     "email": "SS@aol.com",
     "password": "password02",
-    "is_teacher": false,
-    "comments": ["Wow, Ms. Lawless is great"]
+    "is_teacher": false
   },
   {
     "name": "Yousef Pressley",
     "email": "You@yahoo.com",
     "password": "password02",
-    "is_teacher": false,
-    "comments": ["Do we need a No2 pencil?"]
+    "is_teacher": false
   },
   {
     "name": "Heidy Seals",
     "email": "heidyho@email.com",
     "password": "password02",
-    "is_teacher": false,
-    "comments": []
+    "is_teacher": false
   },
   {
     "name": "Saul Nelson",
     "email": "nelson@nunyo.com",
     "password": "password02",
-    "is_teacher": false,
-    "comments": ["Love the geography lesson"]
+    "is_teacher": false
   },
   {
     "name": "Madelyn Eads",
     "email": "meads@gmail.com",
     "password": "password02",
-    "is_teacher": false,
-    "comments": ["My daughter got an A!!"]
+    "is_teacher": false
   },
   {
     "name": "Giana Lawless",
     "email": "gianalawless@gmail.com",
     "password": "password02",
     "is_teacher": true,
-    "permission_level": 3,
-    "comments": ["Bobby is a troublemaker"]
+    "permission_level": 3
   }
 ]
