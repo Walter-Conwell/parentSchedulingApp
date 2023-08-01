@@ -20,7 +20,7 @@ const typeDefs = gql`
 
   type Query {
     profiles: [Profile]!
-    profile(profileId: ID!): Profile
+    profile(profileId: ID, profileName: String): Profile
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
   }
@@ -30,8 +30,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     addComment(profileId: ID!, comment: String!): Profile
-    removeProfile: Profile
-    removeComment(comment: String!): Profile
+    removeProfile(profileId: ID): Profile
+    removeComment(profileId: ID, comment: String!): Profile
   }
 `;
 

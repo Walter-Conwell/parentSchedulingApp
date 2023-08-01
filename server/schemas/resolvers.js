@@ -2,6 +2,13 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile } = require('../models');
 const { signToken } = require('../utils/auth');
 
+const permissions = [
+  "",
+  "deleteComments",
+  "deleteComments changeTeacher changeGrade",
+  "deleteComments changeTeacher changeGrade changeChildren editProfiles deleteProfiles",
+]
+
 // Removes teacher_name and is_teacher from embedded object
 // This allows graphQL to return those due to lack of object type
 function formatProfileData (data) {
@@ -27,9 +34,13 @@ const resolvers = {
       return formatProfileData(profiles);
     },
 
-    profile: async (parent, { profileId }) => {
-      const profile = await Profile.findOne({ _id: profileId }).lean();
-      // .lean() converts the results into default JS object type rather than mongo type
+    profile: async (parent, { profileId, profileName }) => {
+      let profile;
+      if (profileId){
+        profile = await Profile.findOne({ _id: profileId }).lean();
+      } else {
+        profile = await Profile.findOne({ name: profileName }).lean();
+      } // .lean() converts the results into default JS object type rather than mongo type
       return formatProfileData(profile);
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
@@ -88,18 +99,32 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeProfile: async (parent, args, context) => {
-      if (context.user) {
+    removeProfile: async (parent, { profileId }, context) => {
+      if( context.user && profileId ) {
+        // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete others
+        if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteProfiles') )) {
+          return Profile.findOneAndDelete({ _id: profileId });
+        }
+      } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     // Make it so a logged in user can only remove a comment from their own profile
-    removeComment: async (parent, { comment }, context) => {
-      if (context.user) {
+    removeComment: async (parent, { profileId, comment }, context) => {
+      if ( context.user && profileId ) {
+        // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete other comments
+        if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteComments') )) {
+          return Profile.findOneAndUpdate(
+            { _id: profileId },
+            { $pull: { comments: comment }},
+            { new: true }
+          );
+        }
+      } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { comments: comment } },
+          { $pull: { comments: comment }},
           { new: true }
         );
       }

@@ -58,5 +58,18 @@
     },
     "class_grade": "1st grade",
     "comments": ["My daughter got an A!!"]
+  },
+  {
+    "name": "Giana Lawless",
+    "email": "gianalawless@gmail.com",
+    "password": "password02",
+    "children": ["null"],
+    "teacher": {
+      "is_teacher": true,
+      "teacher_name": ""
+    },
+    "class_grade": "1st grade",
+    "permission_level": 3,
+    "comments": ["Bobby is a troublemaker"]
   }
 ]
