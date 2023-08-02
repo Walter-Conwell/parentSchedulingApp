@@ -18,13 +18,17 @@ function Profile() {
     }, [loading, data]);
 
   return (
-    <div>
+    <>
         {loading ? "loading..." : 
-        <>
+        <div>
             <h2>{userData.name}</h2>
             <h3>{userData.email}</h3>
-        </> }
-    </div>
+            {/* {userData.children.map((item) => 
+
+            )} */}
+        </div>
+        }
+    </>
   )
 }
 
