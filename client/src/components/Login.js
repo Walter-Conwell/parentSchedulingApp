@@ -1,55 +1,54 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
 import logoImage from "../assets/kidzdirect-low-resolution-color-logo.png";
 import { useMutation } from "@apollo/client";
-import { ADD_PROFILE } from "../utils/mutations";
+import { LOGIN_PROFILE } from "../utils/mutations";
 import auth from "../utils/auth";
+import React, { useState } from "react";
+
 
 // // login function
 const Login = () => {
-  const [loginStatus, setLoginStatus] = React.useState("Log in");
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setLoginStatus("Logging in...");
-    const { email, password } = e.target.elements;
-    let loginCredentials = {
-      email: email.value,
-      password: password.value,
-    };
-    console.log(loginCredentials);
-  };
-  return (
-    <div>
-      <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-        <img src={logoImage} className="img-fluid" alt="Sample image" />
-      </div>
-      <form onSubmit={onSubmit}>
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">
-            Email
-          </label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3"></input>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">
-            Password
-          </label>
-          <div class="col-sm-10">
-            <input
-              type="password"
-              class="form-control"
-              id="inputPassword3"
-            ></input>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          {loginStatus}
-        </button>
-      </form>
-      ;
-    </div>
-  );
-};
+    const [ login, { error, data } ] = useMutation(LOGIN_PROFILE);
+    if ( error ) {
+        console.log(JSON.stringify(error));
+    }
+
+    const [loginStatus, setLoginStatus] = React.useState('Log in')
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const { email, password } = e.target.elements
+        let loginCredentials = {
+            email: email.value,
+            password: password.value,
+        }
+        console.log(loginCredentials);
+        try {
+            const { data } = await login({
+              variables: loginCredentials
+            });
+      
+            auth.login(data.login.token);
+      
+            console.log(data);
+          } catch (error) {
+            console.log(JSON.stringify(error));
+          }
+    }
+    return (<form onSubmit={onSubmit}>
+            <div className="row mb-3">
+                <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
+                <div className="col-sm-10">
+                    <input type="email" className="form-control" id="email"></input>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
+                <div className="col-sm-10">
+                    <input type="password" className="form-control" id="password"></input>
+                </div>
+            </div>
+            <button type="submit" className="btn btn-primary">{loginStatus}</button>
+        </form>);
+        
+
+}; 
 export default Login;
