@@ -6,9 +6,16 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-    children: [String]!,
+    children: [Child],
     is_teacher: Boolean,
-    comments: [String]
+    comments: [Comment]
+  }
+
+  type Child {
+    _id: ID
+    name: String
+    teachers: [String]
+    parents: [String]
   }
 
   type Comment {
@@ -17,6 +24,7 @@ const typeDefs = gql`
     commentAuthor: String
     createdAt: String
   }
+
   type Auth {
     token: ID!
     profile: Profile
@@ -25,8 +33,6 @@ const typeDefs = gql`
   type Query {
     profiles: [Profile]!
     profile(profileId: ID, profileName: String): Profile
-    comments(profileId: String): [Comment]
-    comment(commentId: ID!): Comment
     me: Profile
   }
 

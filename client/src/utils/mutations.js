@@ -1,19 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const ADD_PROFILE = gql`
-  mutation addProfile($name: String!, $email: String!, $password: String!) {
-    addProfile(name: $name, email: $email, password: $password) {
+  mutation addProfile($name: String!, $email: String!, $password: String!, $isTeacher: Boolean) {
+    addProfile(name: $name, email: $email, password: $password, is_teacher: $isTeacher) {
       token
-    }
-  }
-`;
-
-export const ADD_COMMENT = gql`
-  mutation addcomment($profileId: ID!, $comment: String!) {
-    addComment(profileId: $profileId, comment: $comment) {
-      _id
-      name
-      skills
+      profile {
+        _id
+      }
     }
   }
 `;
@@ -30,12 +23,17 @@ export const LOGIN_PROFILE = gql`
   }
 `;
 
-export const REMOVE_COMMENT = gql`
-  mutation removecomment($comment: String!) {
-    removeComment(comment: $comment) {
+export const ADD_CHILD = gql`
+  mutation addChild($childName: String!, $teacherNames: [String]!, $parents: [String]!, $gradeLevel: Int!, $profileId: ID, $profileName: String) {
+    addChild(childName: $childName, teacherNames: $teacherNames, parents: $parents, gradeLevel: $gradeLevel, profileId: $profileId, profileName: $profileName) {
       _id
       name
-      skills
+      children {
+        _id
+        name
+        teachers
+        parents
+      }
     }
   }
-`;
+`
