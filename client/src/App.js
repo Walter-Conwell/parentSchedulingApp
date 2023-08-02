@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
-import { SettingsIcon } from "@chakra-ui/icons";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import SignUp from "./components/Signup";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Contact from "./components/Contact";
 import About from "./components/About";
+// import Login from "./components/Login";
 // import DrawerExample from "./components/Drawer";
 
 function App() {
@@ -20,10 +18,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="about" element={<About />} />
+          <Route path="/about" element={<About />} />
+          {/* <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} /> */}
           {/* Routes defined here */}
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

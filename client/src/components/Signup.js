@@ -3,54 +3,15 @@
 // next- use this that works, and incorporate
 import React, { useState } from "react";
 import "../../src/App.css";
-import { ChakraProvider } from "@chakra-ui/react";
-
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/react";
 
 function SignUp() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  return (
-    <div className="App">
-      <ChakraProvider>
-        <Button onClick={onOpen}>SignUp</Button>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Welcome!</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <h1>Sign up with us to start Connecting with Resources!</h1>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Save
-              </Button>
-              <Button variant="ghost">Close</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </ChakraProvider>
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default SignUp;
 
-// import React, { useState } from "react";
-// import "./App.css";
 // import { ChakraProvider } from "@chakra-ui/react";
 // import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 // import { SettingsIcon } from "@chakra-ui/icons";
@@ -283,3 +244,10 @@ export default SignUp;
 // // };
 
 // // export default Signup;
+// finish navbar
+// signup/login forms
+// if user is signed up, they can add a child (needs form)
+// child is saved in database
+// fulfills query requirements
+// import bootstrap
+// install bootstrap in client directory
