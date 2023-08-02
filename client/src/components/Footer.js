@@ -1,6 +1,6 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-
+import logo from "../Assets/kidzdirect-hr-white-trans.png"
 import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
 
 const Footer = () => {
@@ -24,7 +24,8 @@ const Footer = () => {
       </Box>
       <Spacer />
       <Box>
-        <Link color="white">*Logo*</Link>
+        <img className="l2img" src={logo}alt="logo"/>
+        {/* <Link color="white">*Logo*</Link> */}
       </Box>
       <Spacer />
       <Box ml="4">
