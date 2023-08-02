@@ -1,9 +1,11 @@
-// import React, { useState } from "react";
-// import "../../src/App.css";
 
-// // login function
 
-// f
+import React from 'react'
 
- 
-// export default Login;
+function Login() {
+  return (
+    <div>Login</div>
+  )
+}
+
+export default Login

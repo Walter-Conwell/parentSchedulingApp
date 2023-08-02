@@ -25,7 +25,11 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      skills
+      email
+      password
+      children
+      is_teacher
+      comments
     }
   }
 `;

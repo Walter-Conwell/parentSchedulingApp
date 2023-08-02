@@ -1,17 +1,37 @@
-import logoImage from "../assets/kidzdirect-low-resolution-color-logo.png"
+import logoImage from "../assets/kidzdirect-low-resolution-color-logo.png";
+import { useMutation } from "@apollo/client";
+import { ADD_PROFILE } from "../utils/mutations";
+import auth from "../utils/auth";
+import React, { useState } from "react";
 
 export default function Signup () {
-  const onSubmit = (e) => {
+  const [ addProfile, { error, data }] = useMutation(ADD_PROFILE);
+  if ( error ) {
+    console.log(JSON.stringify(error));
+  }
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log('test');
-    const { name, email, password, passwordConfirm } = e.target.elements;
+    const { name, email, password /*, passwordConfirm */} = e.target.elements;
     let conFom = {
       name: name.value,
       email: email.value,
       password: password.value,
-      passwordConfirm: passwordConfirm.value
     }
     console.log(conFom);
+
+    try {
+      const { data } = await addProfile({
+        variables: conFom
+      });
+
+      auth.login(data.addProfile.token);
+
+      console.log(data);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
   }
 
   return (
