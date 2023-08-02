@@ -5,17 +5,31 @@ export const QUERY_PROFILES = gql`
     profiles {
       _id
       name
-      skills
+      email
+      is_teacher
+      children {
+        _id
+        name
+        teachers
+        parents
+      }
     }
   }
 `;
 
 export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
+  query singleProfile($profileId: ID, $profileName: String) {
+    profile(profileId: $profileId, profileName: $profileName) {
       _id
+      email
+      is_teacher
       name
-      skills
+      children {
+        _id
+        name
+        teachers
+        parents
+      }
     }
   }
 `;
@@ -26,10 +40,13 @@ export const QUERY_ME = gql`
       _id
       name
       email
-      password
-      children
       is_teacher
-      comments
+      children {
+        _id
+        name
+        teachers
+        parents
+      }
     }
   }
 `;
