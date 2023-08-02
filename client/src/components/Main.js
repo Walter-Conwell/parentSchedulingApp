@@ -5,7 +5,6 @@ import Login from "./Login";
 export default function Main() {
   return (
     <div>
-      <body>
         <header data-bs-theme="dark">
           <div className="collapse text-bg-dark" id="navbarHeader">
             <div className="container">
@@ -89,14 +88,14 @@ export default function Main() {
                   too short so folks don’t simply skip over it entirely.
                 </p>
                 <p>
-                  <a
+                  {/* <a
                     href="#login"
                     className="btn btn-primary my-2"
                     onClick={() => handlePageChange(Login)}
                   >
                     Login
-                  </a>
-                  <a href="#" className="btn btn-secondary my-2">
+                  </a> */}
+                  <a href="/signup" className="btn btn-secondary my-2">
                     Signup
                   </a>
                 </p>
@@ -278,7 +277,6 @@ export default function Main() {
             </div>
           </div>
         </main>
-      </body>
     </div>
   );
 }
