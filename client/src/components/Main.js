@@ -89,7 +89,11 @@ export default function Main() {
                   too short so folks don’t simply skip over it entirely.
                 </p>
                 <p>
-                  <a href="#" className="btn btn-primary my-2">
+                  <a
+                    href="#login"
+                    className="btn btn-primary my-2"
+                    onClick={() => handlePageChange(Login)}
+                  >
                     Login
                   </a>
                   <a href="#" className="btn btn-secondary my-2">
