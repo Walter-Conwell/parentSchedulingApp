@@ -91,23 +91,23 @@ const resolvers = {
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addComment: async (parent, { profileId, comment }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.profile) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { comments: commentText, commentAuthor: context.profile.profileId },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError("You need to be logged in!");
-    },
+    // addComment: async (parent, { profileId, comment }, context) => {
+    //   // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+    //   if (context.profile) {
+    //     return Profile.findOneAndUpdate(
+    //       { _id: profileId },
+    //       {
+    //         $addToSet: { comments: commentText, commentAuthor: context.profile.profileId },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+    //   }
+    //   // If user attempts to execute this mutation and isn't logged in, throw an error
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, { profileId }, context) => {
       if( context.user && profileId ) {
@@ -121,25 +121,25 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     // Make it so a logged in user can only remove a comment from their own profile
-    removeComment: async (parent, { profileId, comment }, context) => {
-      if ( context.user && profileId ) {
-        // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete other comments
-        if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteComments') )) {
-          return Profile.findOneAndUpdate(
-            { _id: profileId },
-            { $pull: { comments: comment }},
-            { new: true }
-          );
-        }
-      } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { comments: comment }},
-          { new: true }
-        );
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+    // removeComment: async (parent, { profileId, comment }, context) => {
+    //   if ( context.user && profileId ) {
+    //     // checks if logged in user is trying to delete themselves or if logged in user has permissions to delete other comments
+    //     if (( profileId === context.user._id ) || ( permissions[ context.user.permission_level ].split(' ').includes('deleteComments') )) {
+    //       return Profile.findOneAndUpdate(
+    //         { _id: profileId },
+    //         { $pull: { comments: comment }},
+    //         { new: true }
+    //       );
+    //     }
+    //   } else if ( context.user ) { // backup incase logged in user didnt specify a profileId
+    //     return Profile.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { comments: comment }},
+    //       { new: true }
+    //     );
+    //   }
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
   },
 };
 
