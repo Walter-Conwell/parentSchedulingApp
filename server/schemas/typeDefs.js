@@ -42,9 +42,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     
     addChild(profileId: ID, profileName: String, childName: String!, teacherNames: [String]!, parents: [String]!, gradeLevel: Int!): Profile
-    addComment(profileId: ID!, comment: String!): Profile
     removeProfile(profileId: ID): Profile
-    removeComment(profileId: ID, comment: String!): Profile
 
   }
 `;
