@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_PROFILE } from "../utils/mutations";
 import auth from "../utils/auth";
 import React, { useState } from "react";
+import "../App.css";
 
 // // login function
 const Login = () => {
@@ -35,7 +36,7 @@ const Login = () => {
 
   return (
     <section className="vh-100">
-      <div className="container h-100">
+      <div className="container h-100 dkgreen-bkg">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
             <div className="card text-black">
@@ -97,7 +98,7 @@ const Login = () => {
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
                           type="submit"
-                          className="btn btn-primary btn-lg"
+                          className="btn dkgreen-bkg btn-lg"
                         >
                           Login
                         </button>

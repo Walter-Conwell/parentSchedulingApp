@@ -42,7 +42,7 @@ export default function Main() {
             </div>
           </div>
         </div>
-        <div className="navbar navbar-dark bg-dark shadow-sm">
+        <div className="navbar navbar-dark dkgreen-bkg shadow-sm">
           <div className="container">
             <a href="#" className="navbar-brand d-flex align-items-center">
               <strong>KidzDirect</strong>
@@ -58,11 +58,6 @@ export default function Main() {
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
-              <button>
-                <a href="/profile" className="text-white border-color-white">
-                  Profile
-                </a>
-              </button>
             </button>
           </div>
         </div>
@@ -70,13 +65,13 @@ export default function Main() {
       <main>
         <section className="py-5 text-center container">
           <div className="row py-lg-5">
-            <div className="col-lg-6 col-md-8 mx-auto">
+            <div className="col-lg-6 col-md-8 mx-auto border border-5 rounded">
               <h1 className="fw-light">Bulletin Board</h1>
               <p className="lead text-body-secondary">
-                Post a message to the class parents.
+                Post your class messages here:
               </p>
               <p>
-                <a href="/login" className="btn btn-secondary my-2">
+                <a href="/login" className="btn dkgreen-bkg my-2">
                   Login
                 </a>
                 <a href="/signup" className="btn btn-secondary my-2">
@@ -86,7 +81,7 @@ export default function Main() {
             </div>
           </div>
         </section>
-        <div className="album py-5 bg-body-tertiary">
+        <div className="album py-5 dkgreen-bkg">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               <div className="col">
@@ -110,6 +105,9 @@ export default function Main() {
                   <div className="card-body">
                     <p className="card-text">
                       Get your scout cookies from my daughter next Tuesday.
+                      <br />
+                      --Saul Nelson <br />
+                      July 25, 2023
                     </p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
@@ -117,7 +115,7 @@ export default function Main() {
                           type="button"
                           className="btn btn-sm btn-outline-secondary"
                         >
-                          View
+                          Reply
                         </button>
                         <button
                           type="button"
@@ -126,7 +124,7 @@ export default function Main() {
                           Edit
                         </button>
                       </div>
-                      <small className="text-body-secondary">9 mins</small>
+                      <small className="text-body-secondary"></small>
                     </div>
                   </div>
                 </div>
@@ -151,8 +149,10 @@ export default function Main() {
                   </svg>
                   <div className="card-body">
                     <p className="card-text">
-                      Anyone want to setup a study session next Wednesday
-                      afternoon?
+                      Anyone want to setup a playdate next Wednesday afternoon?
+                      <br />
+                      --Heidy Seals <br />
+                      July 26, 2023
                     </p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
@@ -169,7 +169,7 @@ export default function Main() {
                           Edit
                         </button>
                       </div>
-                      <small className="text-body-secondary">9 mins</small>
+                      <small className="text-body-secondary"></small>
                     </div>
                   </div>
                 </div>
@@ -194,7 +194,9 @@ export default function Main() {
                   </svg>
                   <div className="card-body">
                     <p className="card-text">
-                      Field trip to the zoo coming up.
+                      Field trip to the zoo coming up. <br />
+                      --Yousef Pressley <br />
+                      July 28th, 2023
                     </p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
@@ -211,7 +213,7 @@ export default function Main() {
                           Edit
                         </button>
                       </div>
-                      <small className="text-body-secondary">9 mins</small>
+                      <small className="text-body-secondary"></small>
                     </div>
                   </div>
                 </div>
@@ -239,13 +241,23 @@ export default function Main() {
                     <p className="card-text">
                       bus 37 blew a tire this morning so those kids will be
                       late.
+                      <br /> --Selina Saxton,
+                      <br /> August 1st, 2023
                     </p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
                         <button
                           type="button"
                           className="btn btn-sm btn-outline-secondary"
-                        ></button>
+                        >
+                          Reply
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-secondary"
+                        >
+                          Edit
+                        </button>
                       </div>
                     </div>
                   </div>
