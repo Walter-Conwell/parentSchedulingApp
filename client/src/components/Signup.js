@@ -91,7 +91,7 @@ export default function Signup() {
                         </div>
                       </div>
 
-                      <div className="d-flex flex-row align-items-center mb-4">
+                      {/* <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
                           <input
@@ -106,7 +106,7 @@ export default function Signup() {
                             Repeat your password
                           </label>
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button
