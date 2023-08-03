@@ -10,7 +10,7 @@ const CTA = "Get Started";
 
 export default function Navbar() {
   return (
-   <div>navbar</div>
+   <div></div>
   );
 }
 // top priorities signup form
