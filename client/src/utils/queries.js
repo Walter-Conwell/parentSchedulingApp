@@ -7,7 +7,7 @@ export const QUERY_PROFILES = gql`
       name
       email
       is_teacher
-      children {
+      kids {
         _id
         name
         teachers
@@ -24,7 +24,7 @@ export const QUERY_SINGLE_PROFILE = gql`
       email
       is_teacher
       name
-      children {
+      kids {
         _id
         name
         teachers
@@ -41,7 +41,7 @@ export const QUERY_ME = gql`
       name
       email
       is_teacher
-      children {
+      kids {
         _id
         name
         teachers

@@ -6,7 +6,7 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-    children: [Child],
+    kids: [Child],
     is_teacher: Boolean,
     comments: [Comment]
   }
