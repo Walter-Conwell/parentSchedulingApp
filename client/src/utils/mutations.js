@@ -24,16 +24,11 @@ export const LOGIN_PROFILE = gql`
 `;
 
 export const ADD_CHILD = gql`
-  mutation addChild($childName: String!, $teacherNames: [String]!, $parents: [String]!, $gradeLevel: Int!, $profileId: ID, $profileName: String) {
-    addChild(childName: $childName, teacherNames: $teacherNames, parents: $parents, gradeLevel: $gradeLevel, profileId: $profileId, profileName: $profileName) {
-      _id
+  mutation Mutation($childName: String!, $teacherNames: [String]!, $parents: [String]!, $gradeLevel: Int!) {
+  addChild(childName: $childName, teacherNames: $teacherNames, parents: $parents, gradeLevel: $gradeLevel) {
+    children {
       name
-      children {
-        _id
-        name
-        teachers
-        parents
-      }
     }
   }
-`
+}
+`;
