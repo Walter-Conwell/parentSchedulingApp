@@ -4,7 +4,7 @@ import { ADD_CHILD } from "../utils/mutations";
 import auth from "../utils/auth";
 import React, { useState } from "react";
 
-export default function addChild() {
+export default function AddChild() {
   const [addChild, { error, data }] = useMutation(ADD_CHILD);
   if (error) {
     console.log(JSON.stringify(error));
@@ -14,20 +14,20 @@ export default function addChild() {
     e.preventDefault();
     console.log("test");
     const { childName, teacherNames, parents, gradeLevel } = e.target.elements;
-    let addChild = {
+    let child = {
       childName: childName.value,
       teacherNames: teacherNames.value,
       parents: parents.value,
-      gradeLevel: gradeLevel.value,
+      gradeLevel: parseInt(gradeLevel.value),
     };
     console.log(addChild);
 
     try {
       const { data } = await addChild({
-        variables: addChild,
+        variables: child,
       });
 
-      auth.login(data.addChild.token);
+      // auth.login(data.addChild.token);
 
       console.log(data);
     } catch (error) {
