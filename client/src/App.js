@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import SignUp from "./components/Signup";
 import Profile from "./components/Profile";
+import AddChild from "./components/AddChild";
 // import Footer from "./components/Footer";
 import Contact from "./components/Contact";
 import About from "./components/About";
@@ -48,6 +48,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/addchild" element={<AddChild />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Main />} />
