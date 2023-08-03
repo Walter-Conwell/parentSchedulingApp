@@ -57,7 +57,14 @@ export default function Main() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon">
+                <a
+                  href="/profile"
+                  className="dkgreen-bkg text-white border-color-white"
+                >
+                  Profile
+                </a>
+              </span>
             </button>
           </div>
         </div>
