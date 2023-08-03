@@ -91,19 +91,7 @@ const Login = () => {
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-                        <div className="form-outline flex-fill mb-0">
-                          <input
-                            type="password"
-                            id="passwordConfirm"
-                            className="form-control"
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="passwordConfirm"
-                          >
-                            Repeat your password
-                          </label>
-                        </div>
+                        <div className="form-outline flex-fill mb-0"></div>
                       </div>
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
@@ -111,7 +99,7 @@ const Login = () => {
                           type="submit"
                           className="btn btn-primary btn-lg"
                         >
-                          Register
+                          Login
                         </button>
                       </div>
                     </form>
