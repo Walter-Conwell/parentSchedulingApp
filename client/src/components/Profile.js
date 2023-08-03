@@ -1,13 +1,21 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import { useMutation } from "@apollo/client";
+import auth from "../utils/auth";
+import { DELETE_PROFILE } from "../utils/mutations";
 import { Link, useHref } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { LOGIN_PROFILE } from "../utils/mutations";
 function Profile(props) {
   const [userData, setUserData] = useState({});
+  const [removeProfile, { error: deleteProfileErr, data: deleteProfileData }] =
+    useMutation(DELETE_PROFILE);
   const { loading, data, error } = useQuery(QUERY_ME);
   if (error) {
     console.log(JSON.stringify(error));
+  }
+  if (deleteProfileErr) {
+    console.log(JSON.stringify(deleteProfileErr));
   }
   useEffect(() => {
     if (!loading) {
@@ -15,6 +23,19 @@ function Profile(props) {
       console.log(data);
     }
   }, [loading, data]);
+  async function handleDelete(e) {
+    try {
+      const { data } = await removeProfile({
+        variables: {},
+      });
+      auth.logout();
+
+      console.log(data);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  }
+
   return (
     <>
       {loading ? (
@@ -36,6 +57,14 @@ function Profile(props) {
                   Add Your Child
                 </a>
               </button>
+              <Link
+                type="button"
+                onClick={handleDelete}
+                className="btn btn-danger btn-lg"
+                to="/"
+              >
+                Delete profile
+              </Link>
             </div>
           </div>
           {userData.kids ? (
