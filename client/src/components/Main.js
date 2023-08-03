@@ -1,6 +1,7 @@
 import React from "react";
 import SignUp from "./Signup";
 import Login from "./Login";
+import "../App.css";
 
 export default function Main() {
   return (
