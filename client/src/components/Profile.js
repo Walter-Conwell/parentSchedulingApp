@@ -33,7 +33,13 @@ function Profile() {
               {/* check authentication */}
               Edit info here -
               <button className="font-size">
-                <h5 type="input">Child's name</h5>
+                {/* <h5 type="input">Add a Child</h5> */}
+                <a
+                  href="/addChild"
+                  className="dkgreen-bkg text-white border-color-white"
+                >
+                  Add a Child
+                </a>
               </button>
             </div>
           </div>
