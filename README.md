@@ -46,6 +46,7 @@ Licensed under the [MIT](https://opensource.org/licenses/MIT) license
 
 ## Wireframe and design elements
 
+### logos and color map generated with : https://app.logo.com/
 ![colors](Logo_Colors.png)
 ![Project wireframe](image.png)
 ![Brainmap - DarkMode](image-2.png)
