@@ -1,13 +1,20 @@
+import { Link } from "react-router-dom";
 import logoImage from "../assets/kidzdirect-low-resolution-color-logo.png";
 import { useMutation } from "@apollo/client";
-import { ADD_CHILD } from "../utils/mutations";
+import { ADD_CHILD, DELETE_PROFILE } from "../utils/mutations";
 import auth from "../utils/auth";
 import React, { useState } from "react";
 
 export default function AddChild() {
-  const [addChild, { error, data }] = useMutation(ADD_CHILD);
-  if (error) {
-    console.log(JSON.stringify(error));
+  const [addChild, { error: addChildErr, data: addChildData }] =
+    useMutation(ADD_CHILD);
+  if (addChildErr) {
+    console.log(JSON.stringify(addChildErr));
+  }
+  const [removeProfile, { error: deleteProfileErr, data: deleteProfileData }] =
+    useMutation(DELETE_PROFILE);
+  if (deleteProfileErr) {
+    console.log(JSON.stringify(deleteProfileErr));
   }
 
   const onSubmit = async (e) => {
@@ -34,6 +41,19 @@ export default function AddChild() {
       console.log(JSON.stringify(error));
     }
   };
+
+  async function handleDelete(e) {
+    try {
+      const { data } = await removeProfile({
+        variables: {},
+      });
+      auth.logout();
+
+      console.log(data);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  }
 
   return (
     <section className="vh-100">
@@ -115,6 +135,14 @@ export default function AddChild() {
                         </button>
                       </div>
                     </form>
+                    <Link
+                      type="button"
+                      onClick={handleDelete}
+                      className="btn btn-danger btn-lg"
+                      to="/"
+                    >
+                      Delete profile
+                    </Link>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img
