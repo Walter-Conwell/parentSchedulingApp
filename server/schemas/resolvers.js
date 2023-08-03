@@ -6,7 +6,7 @@ const permissions = [
   "",
   "deleteComments",
   "deleteComments changeTeacher changeGrade",
-  "deleteComments changeTeacher changeGrade changeChildren editProfiles deleteProfiles",
+  "deleteComments changeTeacher changeGrade changekids editProfiles deleteProfiles",
 ]
 
 const resolvers = {
@@ -49,24 +49,24 @@ const resolvers = {
         parents: parents,
         grade_level: gradeLevel,
       }
-      if ( ( profileId || profileName ) && permissions[ context.user.permission_level ].split(' ').includes('changeChildren')) {
+      if ( ( profileId || profileName ) && permissions[ context.user.permission_level ].split(' ').includes('changekids')) {
         if ( profileId ) {
           return Profile.findOneAndUpdate(
             { _id: profileId },
-            { $addToSet: { children: childToCreate }},
+            { $addToSet: { kids: childToCreate }},
             { new: true }
           );
         }
         return Profile.findOneAndUpdate(
           { name: profileName },
-          { $addToSet: { children: childToCreate }},
+          { $addToSet: { kids: childToCreate }},
           { new: true }
         );
       }
       if ( context.user ) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { children: childToCreate }},
+          { $addToSet: { kids: childToCreate }},
           { new: true }
         );
       }

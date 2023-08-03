@@ -13,7 +13,7 @@ db.once("open", async () => {
       for (let j = 0; j < childSeeds[i].parents.length; j++) {
         await Profile.findOneAndUpdate(
           { name: childSeeds[i].parents[j] },
-          { $addToSet: { children: childSeeds[i] } }
+          { $addToSet: { kids: childSeeds[i] } }
         );
       }
     }
