@@ -50,3 +50,7 @@ Licensed under the [MIT](https://opensource.org/licenses/MIT) license
 ![colors](Logo_Colors.png)
 ![Project wireframe](image.png)
 ![Brainmap - DarkMode](image-2.png)
+
+## link to github repository: https://github.com/Walter-Conwell/parentSchedulingApp
+
+## link to deployed application: https://murmuring-shelf-98145-47fc04f5ec66.herokuapp.com/
