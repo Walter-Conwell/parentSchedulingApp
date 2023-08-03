@@ -17,11 +17,11 @@ A networking resource for parents with children in the same class.
 
 ## Usage
 
-Need to edit
+Browse to deployed URL and sign up to use. See installation for more information.
 
 ## Installation
 
-Need to edit
+This app is not intended to be installed, just used from its deployed location. However, if you clone / download the repository, have mongoDB installed, then run npn i && npm run seed && npm run develop, you should be able to browse to localhost:3000 and see the application.
 
 ## Questions
 
@@ -33,7 +33,7 @@ ACFcoding, ctowns5, Geoffreycuba, KyleSl, Ms-Marlena, Walter-Conwell
 
 ## Tests
 
-tested with apollo
+tested with apollo playground.
 
 ## License
 
@@ -42,9 +42,10 @@ Licensed under the [MIT](https://opensource.org/licenses/MIT) license
 
 ## ScreenShot
 
-Put actual screenshot here.
+![screenshot](screenshot.png)
 
-## Wireframe
+## Wireframe and design elements
 
+![colors](Logo_Colors.png)
 ![Project wireframe](image.png)
 ![Brainmap - DarkMode](image-2.png)
