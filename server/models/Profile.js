@@ -78,7 +78,7 @@ const profileSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  children: {
+  kids: {
     type: [childSchema],
     // validate: [(arr) => { return this.is_teacher || arr.length > 0; }, 'Must be a teacher or have children'],
   },
