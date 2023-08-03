@@ -46,7 +46,7 @@ export const ADD_CHILD = gql`
       parents: $parents
       gradeLevel: $gradeLevel
     ) {
-      children {
+      kids {
         name
       }
     }
