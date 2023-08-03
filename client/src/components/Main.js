@@ -45,23 +45,9 @@ export default function Main() {
           <div className="navbar navbar-dark bg-dark shadow-sm">
             <div className="container">
               <a href="#" className="navbar-brand d-flex align-items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  aria-hidden="true"
-                  className="me-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                  <circle cx="12" cy="13" r="4" />
-                </svg>
-                <strong>KidzDirect</strong>
+                  
+                  <strong>KidzDirect</strong>
+                  <img></img>
               </a>
               <button
                 className="navbar-toggler"
@@ -81,11 +67,9 @@ export default function Main() {
           <section className="py-5 text-center container">
             <div className="row py-lg-5">
               <div className="col-lg-6 col-md-8 mx-auto">
-                <h1 className="fw-light">Album example</h1>
+                <h1 className="fw-light">Bulletin Board</h1>
                 <p className="lead text-body-secondary">
-                  Something short and leading about the collection below—its
-                  contents, the creator, etc. Make it short and sweet, but not
-                  too short so folks don’t simply skip over it entirely.
+                  Post a message to the class parents.
                 </p>
                 <p>
                 <a href="/login" className="btn btn-secondary my-2">
@@ -106,24 +90,22 @@ export default function Main() {
                     <svg
                       className="bd-placeholder-img card-img-top"
                       width="100%"
-                      height="225"
+                      height="100"
                       xmlns="http://www.w3.org/2000/svg"
                       role="img"
                       aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <title>Placeholder</title>
+                      {/* <title>Placeholder</title>
                       <rect width="100%" height="100%" fill="#55595c" />
                       <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                         Thumbnail
-                      </text>
+                      </text> */}
                     </svg>
                     <div className="card-body">
                       <p className="card-text">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
+                        Get your scout cookies from my daughter next Tuesday.
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">
@@ -150,24 +132,22 @@ export default function Main() {
                     <svg
                       className="bd-placeholder-img card-img-top"
                       width="100%"
-                      height="225"
+                      height="100"
                       xmlns="http://www.w3.org/2000/svg"
                       role="img"
                       aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <title>Placeholder</title>
+                      {/* <title>Placeholder</title>
                       <rect width="100%" height="100%" fill="#55595c" />
                       <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                         Thumbnail
-                      </text>
+                      </text> */}
                     </svg>
                     <div className="card-body">
                       <p className="card-text">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
+                        Anyone want to setup a study session next Wednesday afternoon?
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">
@@ -194,24 +174,22 @@ export default function Main() {
                     <svg
                       className="bd-placeholder-img card-img-top"
                       width="100%"
-                      height="225"
+                      height="100"
                       xmlns="http://www.w3.org/2000/svg"
                       role="img"
                       aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <title>Placeholder</title>
+                      {/* <title>Placeholder</title>
                       <rect width="100%" height="100%" fill="#55595c" />
                       <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                         Thumbnail
-                      </text>
+                      </text> */}
                     </svg>
                     <div className="card-body">
                       <p className="card-text">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
+                        Field trip to the zoo coming up.
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">
@@ -239,24 +217,22 @@ export default function Main() {
                     <svg
                       className="bd-placeholder-img card-img-top"
                       width="100%"
-                      height="225"
+                      height="100"
                       xmlns="http://www.w3.org/2000/svg"
                       role="img"
                       aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice"
                       focusable="false"
                     >
-                      <title>Placeholder</title>
+                      {/* <title>Placeholder</title>
                       <rect width="100%" height="100%" fill="#55595c" />
                       <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                         Thumbnail
-                      </text>
+                      </text> */}
                     </svg>
                     <div className="card-body">
                       <p className="card-text">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
+                        bus 37 blew a tire this morning so those kids will be late.
                       </p>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">
